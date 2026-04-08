@@ -5,16 +5,26 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "venky-space"
 version = "1.3.0"
-description = "Meta-Hack OpenEnv Optimizer"
+description = "Meta-Hack OpenEnv Optimizer: A cloud maintenance simulator for server patching."
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Maddi Venkata Teja" }]
+authors = [
+    { name = "Maddi Venkata Teja" }
+]
 dependencies = [
     "fastapi",
     "uvicorn",
+    "openai",
+    "pydantic",
     "psutil",
-    "requests"
+    "requests",
+    "google-generativeai"
 ]
 
+[tool.setuptools]
+# This ensures your python files are treated as part of the package
+py-modules = ["app", "inference"]
+
 [project.scripts]
-openenv-start = "uvicorn app:app --host 0.0.0.0 --port 7860"
+# If the platform strictly requires a script, this is the standard format
+openenv-start = "app:main"
